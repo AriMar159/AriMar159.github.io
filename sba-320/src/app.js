@@ -1,24 +1,21 @@
-import React from 'react'
-import './app.css'
-import Navbar from './Components/Navbar/Navbar'
-import Home from './Components/Home/Home'
-import Popular from './Components/Popular/Popular'
-import Offer from './Components/Offers/Offers'
-import Blog from './Components/Blog/blog'
-import Footer from './Components/Footer/Footer'
+import React, { useState, useEffect } from 'react';
+import MovieList from './Components/MovieList';
 
 const App = () => {
-    return (
-        <>
-        <Navbar />
-        {/*<Home />
-        <Popular />
-        <Offer />
-        <About />
-        <Blog />
-        <Footer />}
-        </>
-    )
-}
+    const [movies, setMovies] = useState([]);
 
-export default App
+    useEffect(() => {
+        fetch('https://api.example.com/movies')
+            .then(response => response.json())
+            .then(data => setMovies(data))
+            .catch(error => console.error('Error fetching movies:', error));
+    }, []);
+
+    return (
+        <div>
+            <MovieList movies={movies} />
+        </div>
+    );
+};
+
+export default App;

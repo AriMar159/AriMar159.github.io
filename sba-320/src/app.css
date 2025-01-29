@@ -7,3 +7,93 @@
     font-family: 'Poppins', sans-serif;
     transition: .3s ease;
 }
+
+:root{
+    --PrimaryColor: blue;
+    --HoverColor: lightblue;
+    --whiteColor: white;
+    --blackColor: black;
+    --textColor: black;
+    --whiteColorDeam: lightgrey;
+    --greyBg: grey;
+    --inputColor: rgb(222, 220, 220);
+}
+
+a{
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+.selection{
+    padding: 4rem 0 2rem;
+}
+
+.container{
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+
+.icon{
+    font-size: 2rem;
+    cursor: pointer;
+    color:red;
+}
+
+.flex{
+    display: flex;
+    align-items: center;
+}
+
+.grid{
+    display: grid;
+    align-items: center;
+}
+
+.btn{
+    padding: 4rem 1.5rem;
+    background: yellow;
+    border: none;
+    outline: none;
+    border-radius: 3rem;
+    cursor: pointer;
+}
+
+.btn a{
+    color: aliceblue;
+    font-weight: 500;
+}
+
+.btn:hover a{
+    color: aliceblue;
+}
+
+.secIntro{
+    max-width: 70%;
+    text-align: center;
+    margin: 0 auto 2rem;
+}
+
+.secIntro .secTitle{
+    color: black;
+    line-height: 1.5rem;
+    padding-bottom: .5rem;
+
+}
+
+.secIntro p{
+    font-size: 13px;
+    color: white ;
+    font-weight: 500;
+}
+
+img, video{
+    width: 100%;
+    height: auto;
+}
+
+input{
+    font-size: 100% ;
+}
