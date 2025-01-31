@@ -4,13 +4,17 @@ body {
 }
 
 .movie-app > .row {
-overflow-x: auto;
+overflow-x: scroll;
 flex-wrap:nowrap;
+
+
 }
 
 .image-container{
     position: relative;
     transition: transform 0.2s;
+    display: flex;
+    
 }
 
 .image-container :hover {
