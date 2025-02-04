@@ -11,6 +11,8 @@ const App = () => {
     const generateURL = (searchValue) => 
         `http://www.omdbapi.com/?s=${searchValue}&apikey=9e914884`;
 
+
+
     const fetchInitialMovies = async () => {
         try {
             const response = await fetch(generateURL("star wars"));
@@ -71,10 +73,14 @@ const App = () => {
 
     return (
         <div className='container-fluid movie-app'>
+          
             <div className='row'>
                 <MovieListHeading heading='MovieRec' />
                 <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
             </div>
+            <div className="header-container">
+            <img src="/images/header.jpg" alt= "Movie App Header" className="header-image"/>
+           </div>
 
             <div className='row g-3'>
                 <MovieList 
