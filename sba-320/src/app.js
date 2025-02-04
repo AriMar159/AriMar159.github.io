@@ -4,6 +4,7 @@ import "./App.css";
 import MovieList from './Components/MovieList';
 import SearchBox from './Components/SearchBox';
 import AddFavorites from './Components/AddFavorites';
+import RemoveFavorites from './Components/RemoveFavorites';
 import MovieListHeading from './Components/MovieListHeading';
 
 const App = () => {
@@ -14,10 +15,10 @@ const App = () => {
         try {
             const response = await fetch(generateURL("star wars"));
             const data = await response.json();
-            return data.Search || []; // Return an empty array if no movies found
+            return data.Search || []; // Return empty array if no movies found
         } catch (error) {
             console.error("Error fetching initial movies:", error);
-            return []; // Return empty array on error
+            return [];
         }
     };
 
@@ -32,10 +33,10 @@ const App = () => {
         };
 
         getInitialMovies();
-    }, []); // Runs once on mount
+    }, []);
 
     const getMovieRequest = async (searchValue) => {
-        if (!searchValue) return; // Prevent unnecessary API calls
+        if (!searchValue) return;
 
         try {
             const response = await fetch(generateURL(searchValue));
@@ -44,7 +45,7 @@ const App = () => {
             if (responseJson.Search) {
                 setMovies(responseJson.Search);
             } else {
-                setMovies([]); // Clear the movies if no results found
+                setMovies([]);
             }
         } catch (error) {
             console.error("Error fetching movies:", error);
@@ -63,14 +64,19 @@ const App = () => {
         }
     };
 
+    const removeFavoriteMovie = (movie) => {
+        const updatedFavorites = favorites.filter(fav => fav.imdbID !== movie.imdbID);
+        setFavorites(updatedFavorites);
+    };
+
     return (
         <div className='container-fluid movie-app'>
-            <div className='row d-flex align-items-center mt-4 mb-4'>
+            <div className='row'>
                 <MovieListHeading heading='MovieRec' />
                 <SearchBox searchValue={searchValue} setSearchValue={setSearchValue} />
             </div>
 
-            <div className='row mt-4 mb-4 px-3'>
+            <div className='row g-3'>
                 <MovieList 
                     movies={movies} 
                     handleFavoritesClick={addFavoriteMovie} 
@@ -85,8 +91,8 @@ const App = () => {
             <div className='row'>
                 <MovieList 
                     movies={favorites} 
-                    handleFavoritesClick={addFavoriteMovie} 
-                    favoriteComponent={AddFavorites} 
+                    handleFavoritesClick={removeFavoriteMovie} 
+                    favoriteComponent={RemoveFavorites} 
                 />
             </div>
         </div>
@@ -94,3 +100,4 @@ const App = () => {
 };
 
 export default App;
+
